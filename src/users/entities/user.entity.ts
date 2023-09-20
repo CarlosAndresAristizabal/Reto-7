@@ -10,8 +10,8 @@ export class User {
   name: string;
   @Column()
   password: string;
-  @Column()
-  date: Date;
   @DeleteDateColumn()
   deletedAt: Date;
+  @Column()
+  book: string;
 }

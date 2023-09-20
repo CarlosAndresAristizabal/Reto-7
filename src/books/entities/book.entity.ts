@@ -1,8 +1,5 @@
-import {
-  Column,
-  DeleteDateColumn,
-  Entity,
-} from 'typeorm';
+import { User } from 'src/users/entities/user.entity';
+import { Column, DeleteDateColumn, Entity, OneToMany } from 'typeorm';
 
 @Entity()
 export class Book {
@@ -13,9 +10,11 @@ export class Book {
   @Column()
   author: string;
   @Column()
-  date: Date;
+  date: string;
   @Column()
-  isReserved: boolean;
+  isReseved: boolean;
   @DeleteDateColumn()
-  deletedAt:Date;
+  deletedAt: Date;
+  @OneToMany(() => User, (user) => user.book)
+  users: User[];
 }

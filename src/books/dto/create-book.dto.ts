@@ -1,19 +1,12 @@
-import {
-  IsBoolean,
-  IsDate,
-  IsString,
-  IsStrongPassword,
-  MinLength,
-} from 'class-validator';
+import { IsBoolean, IsString } from 'class-validator';
 
 export class CreateBookDto {
   @IsString()
-  @MinLength(1)
   name: string;
-  @IsStrongPassword()
+  @IsString()
   author: string;
-  @IsDate()
-  date: Date;
+  @IsString()
+  date: string;
   @IsBoolean()
   isReseved: boolean;
 }
