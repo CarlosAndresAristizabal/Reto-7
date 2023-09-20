@@ -2,7 +2,7 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[ i ]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
@@ -24,6 +24,15 @@ let UsersService = class UsersService {
     async create(createUserDto) {
         return await this.usersRepository.save(createUserDto);
     }
+    findOneByEmail(email) {
+        throw this.usersRepository.findOneBy({ email });
+    }
+    findByEmailWithPassword(email) {
+        return this.usersRepository.findOne({
+            where: { email },
+            select: [ 'id', 'name', 'email', 'password', 'role' ],
+        });
+    }
     async findAll() {
         return this.usersRepository.find();
     }
@@ -41,6 +50,6 @@ exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [ typeorm_2.Repository ])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

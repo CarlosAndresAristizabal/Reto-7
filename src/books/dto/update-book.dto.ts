@@ -20,6 +20,6 @@ export class UpdateBookDto {
   @IsBoolean()
   @IsOptional()
   isReseved?: boolean;
-  @OneToMany(() => User, (user) => user.book)
+  // @OneToMany(() => User, (user) => user.book)
   users: User[];
 }

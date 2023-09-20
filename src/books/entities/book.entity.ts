@@ -1,4 +1,3 @@
-import { User } from 'src/users/entities/user.entity';
 import { Column, DeleteDateColumn, Entity, OneToMany } from 'typeorm';
 
 @Entity()
@@ -15,6 +14,4 @@ export class Book {
   isReseved: boolean;
   @DeleteDateColumn()
   deletedAt: Date;
-  @OneToMany(() => User, (user) => user.book)
-  users: User[];
 }

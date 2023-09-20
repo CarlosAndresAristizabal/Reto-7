@@ -11,8 +11,6 @@ export class BooksService {
   constructor(
     @InjectRepository(Book)
     private readonly booksRepository: Repository<Book>,
-    @InjectRepository(Book)
-    private readonly usersRepository: Repository<User>,
   ) {}
   async create(createBookDto: CreateBookDto) {
     return await this.booksRepository.save(createBookDto);

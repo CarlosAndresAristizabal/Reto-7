@@ -6,6 +6,8 @@ export declare class UsersService {
     private readonly usersRepository;
     constructor(usersRepository: Repository<User>);
     create(createUserDto: CreateUserDto): Promise<CreateUserDto & User>;
+    findOneByEmail(email: string): void;
+    findByEmailWithPassword(email: string): Promise<User>;
     findAll(): Promise<User[]>;
     findOne(id: number): Promise<User>;
     update(id: number, updateUserDto: UpdateUserDto): Promise<import("typeorm").UpdateResult>;
