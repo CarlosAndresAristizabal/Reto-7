@@ -9,33 +9,33 @@ import { Repository } from 'typeorm';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
   ) {}
-  async create(createUserDto: CreateUserDto) {
-    return await this.usersRepository.save(createUserDto);
+  create(createUserDto: CreateUserDto) {
+    return this.userRepository.save(createUserDto);
   }
   findOneByEmail(email: string) {
-    throw this.usersRepository.findOneBy({ email });
+    throw this.userRepository.findOneBy({ email });
   }
   findByEmailWithPassword(email: string) {
-    return this.usersRepository.findOne({
+    return this.userRepository.findOne({
       where: { email },
       select: ['id', 'name', 'email', 'password', 'role'],
     });
   }
-  async findAll() {
-    return this.usersRepository.find();
+  findAll() {
+    return this.userRepository.find();
   }
 
-  async findOne(id: number) {
-    return await this.usersRepository.findOneBy({ id });
+  findOne(id: number) {
+    return this.userRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    return await this.usersRepository.update(id, updateUserDto);
+  update(id: number, updateUserDto: UpdateUserDto) {
+    return this.userRepository.update(id, updateUserDto);
   }
 
-  async remove(id: number) {
-    return await this.usersRepository.softDelete({ id });
+  remove(id: number) {
+    return this.userRepository.softDelete({ id });
   }
 }

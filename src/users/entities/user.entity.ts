@@ -1,5 +1,5 @@
+import { Role } from 'src/auth/enums/rol.enum';
 import { Column, DeleteDateColumn, Entity } from 'typeorm';
-import { Role } from '../../common/enums/rol.enum';
 
 @Entity()
 export class User {
@@ -9,10 +9,8 @@ export class User {
   email: string;
   @Column()
   name: string;
-  @Column({ unique: true, nullable: false })
+  @Column({ nullable: false, select: false })
   password: string;
-  @Column({ default: 'user' })
-  rol: string;
   @Column({ type: 'enum', default: Role.USER, enum: Role })
   role: Role;
   @DeleteDateColumn()

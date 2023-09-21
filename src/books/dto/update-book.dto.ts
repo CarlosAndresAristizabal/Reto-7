@@ -4,8 +4,6 @@ import {
   IsString,
   IsStrongPassword,
 } from 'class-validator';
-import { User } from 'src/users/entities/user.entity';
-import { OneToMany } from 'typeorm';
 
 export class UpdateBookDto {
   @IsString()
@@ -20,6 +18,4 @@ export class UpdateBookDto {
   @IsBoolean()
   @IsOptional()
   isReseved?: boolean;
-  // @OneToMany(() => User, (user) => user.book)
-  users: User[];
 }

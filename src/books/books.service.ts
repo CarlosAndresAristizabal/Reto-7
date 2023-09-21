@@ -4,7 +4,6 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './entities/book.entity';
 import { Repository } from 'typeorm';
-import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class BooksService {
@@ -13,22 +12,22 @@ export class BooksService {
     private readonly booksRepository: Repository<Book>,
   ) {}
   async create(createBookDto: CreateBookDto) {
-    return await this.booksRepository.save(createBookDto);
+    return this.booksRepository.save(createBookDto);
   }
 
   async findAll() {
-    return await this.booksRepository.find();
+    return this.booksRepository.find();
   }
 
   async findOne(id: number) {
-    return await this.booksRepository.findOneBy({ id });
+    return this.booksRepository.findOneBy({ id });
   }
 
   async update(id: number, updateBookDto: UpdateBookDto) {
-    return await this.booksRepository.update(id, updateBookDto);
+    return this.booksRepository.update(id, updateBookDto);
   }
 
   async remove(id: number) {
-    return await this.booksRepository.softDelete({ id });
+    return this.booksRepository.softDelete({ id });
   }
 }
