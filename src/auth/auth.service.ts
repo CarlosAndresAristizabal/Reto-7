@@ -24,7 +24,7 @@ export class AuthService {
       email,
       password: await bcryptjs.hash(password, 10),
     });
-    return { message: 'User created succesfully' };
+    return { name, email };
   }
 
   async login({ email, password }: LoginDto) {
@@ -36,8 +36,11 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('password no es corecto');
     }
-    const payload = { email: user.email };
+    const payload = { email: user.email, role: user.role };
     const token = await this.jwtService.signAsync(payload);
     return { token, email };
+  }
+  async profile({ email, role }: { email: string; role: string }) {
+    return await this.usersService.findOneByEmail(email);
   }
 }
