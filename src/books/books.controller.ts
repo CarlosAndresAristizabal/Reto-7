@@ -12,7 +12,9 @@ import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { Role } from 'src/common/enums/rol.enum';
-
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+@ApiTags('books')
+@ApiBearerAuth()
 @Auth(Role.USER)
 @Controller('books')
 export class BooksController {
